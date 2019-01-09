@@ -65,11 +65,3 @@ def searchwords(phrases):
 
 words = searchwords(phraseswithstemming)
 print(words)
-
-#single word extraction
-def searchfrequency(words):
-	words = nltk.FreqDist(words)
-	return words
-
-frequency = searchfrequency(words)
-print(frequency)
