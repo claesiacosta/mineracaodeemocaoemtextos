@@ -23,20 +23,34 @@ data = [('eu sou admirada por muitos','alegria'),
         ('eu tenho muito medo dele', 'medo'),
         ('estou com medo do resultado dos meus testes', 'medo')]
 
+#manual stopwords
 stopwords = ['a', 'agora', 'algum', 'alguma', 'aquele', 'aqueles', 'de', 'deu', 'do', 'e', 'estou', 'esta', 'esta',
              'ir', 'meu', 'muito', 'mesmo', 'no', 'nossa', 'o', 'outro', 'para', 'que', 'sem', 'talvez', 'tem', 'tendo',
              'tenha', 'teve', 'tive', 'todo', 'um', 'uma', 'umas', 'uns', 'vou']
 
+#nltk function implemented - stopwords
 stopwordsnltk = nltk.corpus.stopwords.words("portuguese")
 #print(stopwordsnltk)
 
-def removestopword(texto):
-	frases = []
+#function for remove stopword
+def removestopword(text):
+	phrases = []
 
-	for(palavras, emocao) in  texto:
-		semstop = [p for p in palavras.split() if p not in stopwordsnltk]
-		frases.append((semstop, emocao))
+	for(words, emotion) in  text:
+		withoutstop = [p for p in words.split() if p not in stopwordsnltk]
+		phrases.append((withoutstop, emotion))
 
-	return frases
+	return phrases
 
-print(removestopword(data))
+#print(removestopword(data))
+
+#function for remove stem
+def applystemmer(text):
+	stemmer = nltk.stem.RSLPStemmer()
+	stemmingphrases = []
+	for (words, emotion) in text:
+		withstemming = [str(stemmer.stem(p)) for p in words.split() if p not in stopwordsnltk]
+		stemmingphrases.append((withstemming, emotion))
+	return stemmingphrases
+
+print(applystemmer(data))
