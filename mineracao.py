@@ -54,7 +54,7 @@ def applystemmer(text):
 	return stemmingphrases
 
 phraseswithstemming = applystemmer(data)
-#print(phraseswithstemming)
+print(phraseswithstemming)
 
 #listing of all words
 def searchwords(phrases):
@@ -64,7 +64,7 @@ def searchwords(phrases):
 	return allwords
 
 words = searchwords(phraseswithstemming)
-print(words)
+#print(words)
 
 #single word extraction
 def searchfrequency(words):
@@ -80,7 +80,7 @@ def searchuniquewords(frequency):
 	return freq
 
 uniquewords = searchuniquewords(frequency)
-print(uniquewords)
+#print(uniquewords)
 
 #extraction of words from each sentence
 def wordsextractor(document):
@@ -93,4 +93,9 @@ def wordsextractor(document):
 
 featuresphrases = wordsextractor(['am','nov', 'dia'])
 
-print(featuresphrases)
+#print(featuresphrases)
+
+#extraction of words from all sentence
+
+completdata = nltk.classify.apply_features(wordsextractor, phraseswithstemming)
+print(completdata)
