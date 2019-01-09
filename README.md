@@ -1,2 +1,2 @@
-# mineracaodeemocaoemtextos
-Mineração de emoção em textos com Python e NLTK
+# textclassification
+Text Classification - Natural Language Processing With Python and NLTK
