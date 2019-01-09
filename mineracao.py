@@ -42,7 +42,7 @@ def removestopword(text):
 
 	return phrases
 
-print(removestopword(data))
+#print(removestopword(data))
 
 #function for remove stem
 def applystemmer(text):
@@ -54,7 +54,7 @@ def applystemmer(text):
 	return stemmingphrases
 
 phraseswithstemming = applystemmer(data)
-print(phraseswithstemming)
+#print(phraseswithstemming)
 
 #listing of all words
 def searchwords(phrases):
@@ -72,4 +72,12 @@ def searchfrequency(words):
 	return words
 
 frequency = searchfrequency(words)
-print(frequency.most_common(50))
+#print(frequency.most_common(50))
+
+#print unique words/once
+def searchuniquewords(frequency):
+	freq = frequency.keys()
+	return freq
+
+uniquewords = searchuniquewords(frequency)
+print(uniquewords)
