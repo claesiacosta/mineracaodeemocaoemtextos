@@ -81,3 +81,16 @@ def searchuniquewords(frequency):
 
 uniquewords = searchuniquewords(frequency)
 print(uniquewords)
+
+#extraction of words from each sentence
+def wordsextractor(document):
+	doc = set(document)
+	features = {}
+	for words in uniquewords:
+		features['%s' % words] = (words in doc)
+
+	return features
+
+featuresphrases = wordsextractor(['am','nov', 'dia'])
+
+print(featuresphrases)
