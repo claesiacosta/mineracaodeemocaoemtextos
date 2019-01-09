@@ -32,7 +32,7 @@ stopwords = ['a', 'agora', 'algum', 'alguma', 'aquele', 'aqueles', 'de', 'deu', 
 stopwordsnltk = nltk.corpus.stopwords.words("portuguese")
 #print(stopwordsnltk)
 
-#function for remove stopword
+#stopwords removal
 def removestopword(text):
 	phrases = []
 
@@ -42,7 +42,7 @@ def removestopword(text):
 
 	return phrases
 
-#print(removestopword(data))
+print(removestopword(data))
 
 #function for remove stem
 def applystemmer(text):
@@ -53,4 +53,23 @@ def applystemmer(text):
 		stemmingphrases.append((withstemming, emotion))
 	return stemmingphrases
 
-print(applystemmer(data))
+phraseswithstemming = applystemmer(data)
+print(phraseswithstemming)
+
+#listing of all words
+def searchwords(phrases):
+	allwords = []
+	for (words, emotion) in phrases:
+		allwords.extend(words)
+	return allwords
+
+words = searchwords(phraseswithstemming)
+print(words)
+
+#single word extraction
+def searchfrequency(words):
+	words = nltk.FreqDist(words)
+	return words
+
+frequency = searchfrequency(words)
+print(frequency)
