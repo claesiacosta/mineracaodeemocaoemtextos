@@ -54,7 +54,7 @@ def applystemmer(text):
 	return stemmingphrases
 
 phraseswithstemming = applystemmer(data)
-print(phraseswithstemming)
+#print(phraseswithstemming)
 
 #listing of all words
 def searchwords(phrases):
@@ -98,4 +98,30 @@ featuresphrases = wordsextractor(['am','nov', 'dia'])
 #extraction of words from all sentence
 
 completdata = nltk.classify.apply_features(wordsextractor, phraseswithstemming)
-print(completdata)
+#print(completdata)
+
+
+#Classificação - constroi a tabela de probabilidade
+classificador = nltk.NaiveBayesClassifier.train(completdata)
+
+#print(classificador.labels()) identifica os atribuitos/classes
+
+#mostra as probabilidades das palavras
+#print(classificador.show_most_informative_features(10))
+
+teste = 'eu te amo'
+testestemming = []
+stemmer = nltk.stem.RSLPStemmer()
+for (word) in teste.split():
+	withstem = [w for w in word.split()]
+	testestemming.append(str(stemmer.stem(withstem[0])))
+
+print(testestemming)
+
+novo = wordsextractor(testestemming)
+#print(novo)
+
+print(classificador.classify(novo))
+distribuicao = classificador.prob_classify(novo)
+for classe in distribuicao.samples():
+	print("%s: %f" % (classe, distribuicao.prob(classe)))
